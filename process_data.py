@@ -1,12 +1,25 @@
 import sys
+import sqlite3
+import numpy as np
+import pandas as pd
+from sqlalchemy import create_engine
 
 
-def load_data(messages_filepath, categories_filepath):
-    pass
-
+def load_data(messages.csv, categories.csv):
+    """Load data files by providing the file name or path
+    """
+    messages = pd.read_csv('messages.csv')
+   
+    categories = pd.read_csv('categories.csv')
+    
 
 def clean_data(df):
-    pass
+    """Merge data sets, split categories into separate columns,
+    convert category values to just numbers 0 and 1, replace
+    categories column in df with new category columns
+    """
+    #merge data
+    df = messages.merge(categories, how="inner", on=['id'])
 
 
 def save_data(df, database_filename):
