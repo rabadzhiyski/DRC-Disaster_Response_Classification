@@ -1,3 +1,5 @@
+# python process_data.py messages.csv categories.csv DisasterResponse.db
+
 import sys
 import sqlite3
 import numpy as np
@@ -12,22 +14,30 @@ def load_data(messages_filepath, categories_filepath):
    
     categories = pd.read_csv(categories_filepath)
     
+    # merge data sets
     df = messages.merge(categories, how="inner", on=['id'])
     
     return df
 
 
 def clean_data(df):
-    
+    """Split categories into separate category columns,
+       convert category values to numbers 0 and 1, 
+       replace categories column in df with new category columns
+    """
+    # create a dataframe of the 36 individual category columns
     categories = df['categories'].str.split(pat=';', expand=True)
     
+    # select the first row of the categories dataframe
     row = categories.iloc[1]
     
+    # extract a list of new column names for categories.
     category_colnames = row.apply(lambda x: x[:-2])
     
     categories.columns = category_colnames
     
     for column in categories:
+        
         # set each value to be the last character of the string
         categories[column] = categories[column].astype('str')
         categories[column] = categories[column].str[-1]
@@ -41,12 +51,15 @@ def clean_data(df):
     # concatenate the original dataframe with the new `categories` dataframe
     df = df.append(categories)
     
+    # drop duplicates
     df = df.drop_duplicates()
     
     return df
        
     
 def save_data(df, database_filepath):
+    """Save the clean dataset into an sqlite database
+    """
     
     engine = create_engine('sqlite:///DisasterResponse.db')
    
