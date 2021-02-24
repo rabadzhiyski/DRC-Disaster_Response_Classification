@@ -5,25 +5,52 @@ import pandas as pd
 from sqlalchemy import create_engine
 
 
-def load_data(messages.csv, categories.csv):
+def load_data(messages_filepath, categories_filepath):
     """Load data files by providing the file name or path
     """
-    messages = pd.read_csv('messages.csv')
+    messages = pd.read_csv(messages_filepath)
    
-    categories = pd.read_csv('categories.csv')
+    categories = pd.read_csv(categories_filepath)
     
+    df = messages.merge(categories, how="inner", on=['id'])
+    
+    return df
+
 
 def clean_data(df):
-    """Merge data sets, split categories into separate columns,
-    convert category values to just numbers 0 and 1, replace
-    categories column in df with new category columns
-    """
-    #merge data
-    df = messages.merge(categories, how="inner", on=['id'])
-
-
-def save_data(df, database_filename):
-    pass  
+    
+    categories = df['categories'].str.split(pat=';', expand=True)
+    
+    row = categories.iloc[1]
+    
+    category_colnames = row.apply(lambda x: x[:-2])
+    
+    categories.columns = category_colnames
+    
+    for column in categories:
+        # set each value to be the last character of the string
+        categories[column] = categories[column].astype('str')
+        categories[column] = categories[column].str[-1]
+    
+        # convert column from string to numeric
+        categories[column] = categories[column].astype('int')
+        
+    # drop the original categories column from `df`
+    df = df.drop("categories", axis=1)
+    
+    # concatenate the original dataframe with the new `categories` dataframe
+    df = df.append(categories)
+    
+    df = df.drop_duplicates()
+    
+    return df
+       
+    
+def save_data(df, database_filepath):
+    
+    engine = create_engine('sqlite:///DisasterResponse.db')
+   
+    df.to_sql('DisasterData', engine, index=False)  
 
 
 def main():
