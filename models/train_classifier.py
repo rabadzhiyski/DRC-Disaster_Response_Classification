@@ -30,13 +30,14 @@ def load_data(database_filepath):
     engine = create_engine('sqlite:///data/DisasterResponse.db')
     df = pd.read_sql("DisasterResponse", engine)
     X = df['message']
+    
     #drop also "related" column as there were records with 3 choice
-    y = df.drop(['id', 'message', 'original', 'genre', 'related'], axis = 1)
+    Y = df.drop(['id', 'message', 'original', 'genre', 'related'], axis = 1)
     
     # add category names
-    category_names = y.columns
+    category_names = Y.columns
     
-    return X, y, category_names
+    return X, Y, category_names
 
 def tokenize(text):
     """
@@ -97,7 +98,7 @@ def evaluate_model(model, X_test, Y_test, category_names):
     y_pred = model.predict(X_test)
     
     # print classificatin report
-    print(classification_report(y_test, y_pred, target_names=y.columns))
+    print(classification_report(Y_test, Y_pred, target_names=Y.columns))
     
 
 def save_model(model, model_filepath):
