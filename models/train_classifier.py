@@ -85,9 +85,9 @@ def build_model():
     
              }
 
-    model = GridSearchCV(pipeline, param_grid=parameters, cv=2, n_jobs=-1, verbose=3)
+    cv = GridSearchCV(pipeline, param_grid=parameters, cv=2, n_jobs=-1, verbose=3)
     
-    return model
+    return cv
 
 
 def evaluate_model(model, X_test, Y_test, category_names):
@@ -95,10 +95,10 @@ def evaluate_model(model, X_test, Y_test, category_names):
     Asses model's performance with confusion matrix'
     """
     # make predictions
-    y_pred = model.predict(X_test)
+    Y_pred = model.predict(X_test)
     
     # print classificatin report
-    print(classification_report(Y_test, Y_pred, target_names=Y.columns))
+    print(classification_report(Y_test, Y_pred, target_names=category_names))
     
 
 def save_model(model, model_filepath):
