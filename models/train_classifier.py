@@ -27,8 +27,8 @@ def load_data(database_filepath):
     Load the data from the database
     """
     # create engine
-    engine = create_engine('sqlite:///DisasterResponse.db')
-    df = pd.read_sql("Disaster_Data", engine)
+    engine = create_engine('sqlite:///data/DisasterResponse.db')
+    df = pd.read_sql("DisasterResponse", engine)
     X = df['message']
     #drop also "related" column as there were records with 3 choice
     y = df.drop(['id', 'message', 'original', 'genre', 'related'], axis = 1)
@@ -80,7 +80,7 @@ def build_model():
     
              }
 
-    model = GridSearchCV(pipeline, param_grid=parameters)
+    model = GridSearchCV(pipeline, param_grid=parameters, cv=2, n_jobs=-1, verbose=3)
     
     return model
 
@@ -91,6 +91,7 @@ def evaluate_model(model, X_test, Y_test, category_names):
     """
     # make predictions
     y_pred = model.predict(X_test)
+    
     # print classificatin report
     print(classification_report(y_test, y_pred, target_names=y.columns))
     
