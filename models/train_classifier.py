@@ -32,7 +32,11 @@ def load_data(database_filepath):
     X = df['message']
     #drop also "related" column as there were records with 3 choice
     y = df.drop(['id', 'message', 'original', 'genre', 'related'], axis = 1)
-    return X, y
+    
+    # add category names
+    category_names = y.columns
+    
+    return X, y, category_names
 
 def tokenize(text):
     """
