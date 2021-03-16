@@ -105,7 +105,7 @@ def save_model(model, model_filepath):
     """
     Build a picle file and save model
     """
-    pickle.dump(pipeline, open(model_filepath,'wb'))
+    pickle.dump(model, open(model_filepath,'wb'))
 
 
 def main():
