@@ -75,13 +75,15 @@ def build_model():
     pipeline = Pipeline([
     ('vect', CountVectorizer(tokenizer = tokenize)),
     ('tfidf', TfidfTransformer()),
-    ('clf', MultiOutputClassifier(RandomForestClassifier(n_estimators=100, oob_score=True, 
-                                                         n_jobs=-1,random_state=50, max_features="auto", 
-                                                         min_samples_leaf=50)))
+    ('clf', MultiOutputClassifier(RandomForestClassifier()))
     ])
     # use grid to tune model 
     parameters = {'tfidf__norm': ['l1','l2'],
-              'clf__estimator__criterion': ["gini", "entropy"]
+              'clf__estimator__criterion': ["gini", "entropy"],
+              'vect__min_df': [1, 5],
+              'tfidf__use_idf':[True, False],
+              'clf__estimator__n_estimators':[10, 25],
+              'clf__estimator__min_samples_split':[2, 5, 10]
     
              }
 
