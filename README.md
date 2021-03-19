@@ -65,7 +65,7 @@ README.md
 
 
 ## Warning
-The datasets included in this repository are very unbalanced, with very few positive examples for several message categories. In such cases, even though the classifier accuracy is high, the classifier recall (i.e. the proportion of positive examples that were correctly labelled) tends to be very low. As a result, care should be taken if relying on the results of this app for decision making purposes.
+The datasets included in this repository are very unbalanced, with just a few positive examples. In such cases, even though the classifier accuracy is high, the classifier recall (i.e. the proportion of positive examples that were correctly labelled) tends to be very low. As a result, care should be taken if relying on the results of this app for decision making purposes.
 
 
 ## Acknowledgements
