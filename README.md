@@ -1,9 +1,14 @@
 # DRC - Disaster_Response_Classification
 
 ### Overview
+
 Analyzing message data for disaster response based on messages generated through different channels. The program extracts the messages, transforms, loads, and runs ML based on RandomForestClassifier to classify messages into 35 different categories.
 
-This repository contains code for a web app which which could be used during a disaster event (e.g. an earthquake or hurricane), to classify a disaster message into several categories,so that the appropriate aid agencies are notified.
+This repository contains code for a web app which could be used during a disaster event (e.g. an earthquake or hurricane), to classify a disaster message into several categories,so that the appropriate aid agencies are notified.
+
+### Libraries
+
+json, plotly, pandas, nltk, flask, sklearn, sqlalchemy, sys, numpy, re, pickle.
 
 ### Contents
 
@@ -35,7 +40,8 @@ models
 
 - README.md
 
-### Instructions:
+### Instructions
+
 1. Download the folders to your local machine
 2. Run the following commands in the project's root directory to set up your database and model.
 
@@ -49,4 +55,6 @@ models
 
 3. Go to http://0.0.0.0:3001/
 
+### Acknowledgements
 
+This app was completed as part of the [Udacity Data Science Nanodegree Program](https://www.udacity.com/course/data-scientist-nanodegree--nd025). Code templates and data were provided by Udacity. The data was originally sourced by Udacity from [Figure Eight](https://appen.com/), now known as Appen.
