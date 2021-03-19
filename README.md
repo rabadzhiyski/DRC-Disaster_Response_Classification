@@ -1,10 +1,9 @@
 # DRC - Disaster_Response_Classification
-Analyzing message data for disaster response based on messages generated through different channels.
 
 
 ## Overview
 
-The program extracts the messages, transforms, loads, and runs ML based on RandomForestClassifier to classify messages into 35 different categories.
+Analyzing data for disaster response based on messages generated through different channels. The program extracts the messages, transforms, loads, and runs ML based on RandomForestClassifier to classify messages into 35 different categories.
 
 This repository contains code for a web app which could be used during a disaster event (e.g. an earthquake or hurricane), to classify a disaster message into several categories,so that the appropriate aid agencies are notified.
 
