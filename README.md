@@ -1,16 +1,20 @@
 # DRC - Disaster_Response_Classification
+Analyzing message data for disaster response based on messages generated through different channels.
 
-### Overview
 
-Analyzing message data for disaster response based on messages generated through different channels. The program extracts the messages, transforms, loads, and runs ML based on RandomForestClassifier to classify messages into 35 different categories.
+## Overview
+
+The program extracts the messages, transforms, loads, and runs ML based on RandomForestClassifier to classify messages into 35 different categories.
 
 This repository contains code for a web app which could be used during a disaster event (e.g. an earthquake or hurricane), to classify a disaster message into several categories,so that the appropriate aid agencies are notified.
 
-### Libraries
+
+## Libraries
 
 json, plotly, pandas, nltk, flask, sklearn, sqlalchemy, sys, numpy, re, pickle.
 
-### Contents
+
+## Contents
 
 app
 
@@ -38,9 +42,14 @@ models
 
 |- classifier.pkl  (THIS IS NOT UPLOADED DUE TO SIZE LIMITATIONS. As soon as the ML model runs locally, it will create this pkl file to your machine)
 
-- README.md
+ETL Pipeline Preparation.ipynb (draft working file)
 
-### Instructions
+ML Pipeline Preparation.ipynb (draft working file)
+
+README.md
+ 
+
+## Instructions
 
 1. Download the folders to your local machine
 2. Run the following commands in the project's root directory to set up your database and model.
@@ -55,6 +64,11 @@ models
 
 3. Go to http://0.0.0.0:3001/
 
-### Acknowledgements
+
+## Warning
+The datasets included in this repository are very unbalanced, with very few positive examples for several message categories. In such cases, even though the classifier accuracy is high, the classifier recall (i.e. the proportion of positive examples that were correctly labelled) tends to be very low. As a result, care should be taken if relying on the results of this app for decision making purposes.
+
+
+## Acknowledgements
 
 This app was completed as part of the [Udacity Data Science Nanodegree Program](https://www.udacity.com/course/data-scientist-nanodegree--nd025). Code templates and data were provided by Udacity. The data was originally sourced by Udacity from [Figure Eight](https://appen.com/), now known as Appen.
