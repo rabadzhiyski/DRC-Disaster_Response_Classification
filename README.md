@@ -36,7 +36,7 @@ models
 
 |- train_classifier.py (ML pipeline)
 
-|- classifier.pkl  (THIS IS NOT UPLOADED DUE TO SIZE LIMITATIONS. As soon as the ML model runs locally, it will create this pkl file to your machine)
+|- classifier.pkl  (THIS IS NOT UPLOADED DUE TO SIZE LIMITATIONS (file is 140-160MB). As soon as the ML model runs locally, it will create this pkl file to your machine)
 
 ETL Pipeline Preparation.ipynb (draft working file)
 
